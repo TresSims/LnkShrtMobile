@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LnkShrt Mobile</string>
+    <string name="tab_shorten">Shorten Link</string>
+    <string name="tab_manage">Manage Link</string>
+    <string name="input_link">Input a link to shorten</string>
+    <string name="placeholder_link">https://tres-sims.com/</string>
+    <string name="submit_button">Shrtn It!</string>
+    <string name="manage_link_label">Manage Existing Links</string>
+</resources>
