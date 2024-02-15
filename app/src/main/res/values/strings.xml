@@ -6,4 +6,5 @@
     <string name="placeholder_link">https://tres-sims.com/</string>
     <string name="submit_button">Shrtn It!</string>
     <string name="manage_link_label">Manage Existing Links</string>
+    <string name="error_label">Something went wrong, Try again later.</string>
 </resources>
