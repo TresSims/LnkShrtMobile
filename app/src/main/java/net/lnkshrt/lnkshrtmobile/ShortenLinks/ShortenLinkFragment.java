@@ -1,4 +1,4 @@
-package net.lnkshrt.lnkshrtmobile;
+package net.lnkshrt.lnkshrtmobile.ShortenLinks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import net.lnkshrt.lnkshrtmobile.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
