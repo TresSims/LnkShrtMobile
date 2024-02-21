@@ -8,21 +8,22 @@ import java.util.Map;
 public class ManageLinkItemManager {
 
     /**
-     * An array of sample (placeholder) items.
+     * An array of sample ManageLink items.
      */
     public static final List<ManageLinkItem> ITEMS = new ArrayList<ManageLinkItem>();
 
     /**
-     * A map of sample (placeholder) items, by ID.
+     * A map of sample ManageLink items, by ID.
      */
     public static final Map<String, ManageLinkItem> ITEM_MAP = new HashMap<String, ManageLinkItem>();
 
     private static final int COUNT = 25;
 
+
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createPlaceholderItem(i));
+            addItem(createManageLinkItem(i));
         }
     }
 
@@ -31,25 +32,7 @@ public class ManageLinkItemManager {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static ManageLinkItem createPlaceholderItem(int position) {
+    private static ManageLinkItem createManageLinkItem(int position) {
         return new ManageLinkItem(String.valueOf(position), "Item " + position);
-    }
-
-    /**
-     * An item representing a shortened link element from the database.
-     */
-    public static class ManageLinkItem{
-        public final String id;
-        public final String content;
-
-        public ManageLinkItem(String id, String content) {
-            this.id = id;
-            this.content = content;
-        }
-
-        @Override
-        public String toString() {
-            return content;
-        }
     }
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.lnkshrt.lnkshrtmobile.ManageLinks.ManageLinkItemManager.ManageLinkItem;
+import net.lnkshrt.lnkshrtmobile.ManageLinks.ManageLinkItem;
 import net.lnkshrt.lnkshrtmobile.databinding.FragmentLinkBinding;
 
 import java.util.List;
@@ -32,8 +32,8 @@ public class LinkRecyclerViewAdapter extends RecyclerView.Adapter<LinkRecyclerVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(String.format("https://lnkshrt.net/api/%s", mValues.get(position).id));
+        holder.mContentView.setText(mValues.get(position).link);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class LinkRecyclerViewAdapter extends RecyclerView.Adapter<LinkRecyclerVi
         public ViewHolder(FragmentLinkBinding binding) {
             super(binding.getRoot());
             mIdView = binding.linkTarget;
-            mContentView = binding.removeLink;
+            mContentView = binding.shortLink;
         }
 
         @Override

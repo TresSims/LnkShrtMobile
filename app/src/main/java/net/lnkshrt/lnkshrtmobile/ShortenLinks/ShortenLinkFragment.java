@@ -160,11 +160,11 @@ public class ShortenLinkFragment extends Fragment {
                         id = json.getString("id");
                     } catch (JSONException e) {
                         Log.e(tag, "Couldn't parse response body");
-                        showError();
+                        getActivity().runOnUiThread(() -> showError());
                         return;
                     } catch (NullPointerException e) {
                         Log.e(tag, "Couldn't find response body");
-                        showError();
+                        getActivity().runOnUiThread(() -> showError());
                         return;
                     }
 
