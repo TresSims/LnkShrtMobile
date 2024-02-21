@@ -7,4 +7,8 @@
     <string name="submit_button">Shrtn It!</string>
     <string name="manage_link_label">Manage Existing Links</string>
     <string name="error_label">Something went wrong, Try again later.</string>
+    <string name="waiting_label">Waiting for data...</string>
+    <string name="url">https://lnkshrt.net/api/</string>
+    <string name="list_url">list/</string>
+    <string name="share">share link</string>
 </resources>
