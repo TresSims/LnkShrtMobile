@@ -1,12 +1,13 @@
 package net.lnkshrt.lnkshrtmobile.ManageLinks;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import net.lnkshrt.lnkshrtmobile.ManageLinks.ManageLinkItem;
+import androidx.recyclerview.widget.RecyclerView;
+
 import net.lnkshrt.lnkshrtmobile.databinding.FragmentLinkBinding;
 
 import java.util.List;
@@ -34,6 +35,13 @@ public class LinkRecyclerViewAdapter extends RecyclerView.Adapter<LinkRecyclerVi
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(String.format("https://lnkshrt.net/api/%s", mValues.get(position).id));
         holder.mContentView.setText(mValues.get(position).link);
+        holder.mShareLink.setOnClickListener((v) -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("https://lnkshrt.net/api/%s", mValues.get(position).id));
+            sendIntent.setType("text/plain");
+            v.getContext().startActivity(sendIntent);
+        });
     }
 
     @Override
@@ -41,15 +49,17 @@ public class LinkRecyclerViewAdapter extends RecyclerView.Adapter<LinkRecyclerVi
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
         public ManageLinkItem mItem;
+        public ImageButton mShareLink;
 
         public ViewHolder(FragmentLinkBinding binding) {
             super(binding.getRoot());
             mIdView = binding.linkTarget;
             mContentView = binding.shortLink;
+            mShareLink = binding.shareLink;
         }
 
         @Override

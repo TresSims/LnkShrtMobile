@@ -1,18 +1,15 @@
 package net.lnkshrt.lnkshrtmobile.ManageLinks;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainer;
-import androidx.fragment.app.FragmentContainerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 
 import net.lnkshrt.lnkshrtmobile.R;
 
@@ -22,21 +19,20 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ManageLinksFragment extends Fragment {
-    OkHttpClient client = new OkHttpClient();
-    String tag = "manage links";
+    static OkHttpClient client = new OkHttpClient();
+    static String tag = "manage links";
     FragmentContainerView linkListFragmentContainer;
     TextView error;
     TextView loading;
@@ -67,12 +63,6 @@ public class ManageLinksFragment extends Fragment {
         error.setVisibility(View.VISIBLE);
     }
 
-    void showLoading(){
-        error.setVisibility(View.GONE);
-        linkListFragmentContainer.setVisibility(View.GONE);
-        loading.setVisibility(View.GONE);
-    }
-
     void showData(JSONArray data){
         loading.setVisibility(View.GONE);
         error.setVisibility(View.GONE);
@@ -97,10 +87,14 @@ public class ManageLinksFragment extends Fragment {
         args.putStringArrayList("links", links);
         args.putIntegerArrayList("ids", ids);
 
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.link_list_container, LinkListFragment.class, args)
-                .commit();
+        try {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.link_list_container, LinkListFragment.class, args)
+                    .commit();
+        } catch (NullPointerException e) {
+            Log.e(tag, "Couldn't find fragment manager.");
+        }
     }
 
     void get(){
@@ -151,6 +145,25 @@ public class ManageLinksFragment extends Fragment {
                         Log.e(tag, "Couldn't find UI Thread");
                     }
                 }
+            }
+        });
+    }
+
+    void delete(String id){
+        Request request = new Request.Builder()
+                .url(String.format(Locale.ENGLISH, "https://lnkshrt.net/api/%d", id))
+                .delete()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
             }
         });
     }

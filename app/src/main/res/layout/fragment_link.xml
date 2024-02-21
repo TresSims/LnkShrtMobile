@@ -11,8 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginEnd="5dp"
         android:layout_weight=".4"
-        android:text="1"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
@@ -20,8 +20,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginEnd="5dp"
         android:layout_weight=".4"
-        android:text="1"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <ImageButton
@@ -29,13 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight=".1"
+        android:contentDescription="@string/share"
         app:srcCompat="@android:drawable/ic_menu_share" />
-
-    <ImageButton
-        android:id="@+id/delete_link"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight=".1"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>
