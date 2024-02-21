@@ -36,10 +36,8 @@ import okhttp3.Response;
  */
 public class ManageLinksFragment extends Fragment {
     OkHttpClient client = new OkHttpClient();
-    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     String tag = "manage links";
     FragmentContainerView linkListFragmentContainer;
-    LinkListFragment linkList;
     TextView error;
     TextView loading;
 
